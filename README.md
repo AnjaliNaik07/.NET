@@ -438,4 +438,46 @@ namespace Exercises<br>
 
 
 
-
+using System;<br>
+namespace Exercises<br>
+{<br>
+    class GrayCode<br>
+    {<br>
+        static int getGray(int n)<br>
+        {<br>
+            return n ^ (n >> 1);<br>
+        }<br>
+        static void Main(string[] args)<br>
+        {<br>
+            int InputNum, GrayNum;<br>
+            Console.Write("\nEnter the decimal number: ");<br>
+            InputNum = Convert.ToInt32(Console.ReadLine());<br>
+            Console.WriteLine("\nBinary equivalent of {0}: {1}", InputNum,<br>
+            Convert.ToString(InputNum, 2));<br>
+            GrayNum = getGray(InputNum);<br>
+            Console.WriteLine("\nGray Code equivalent of {0}: {1}", InputNum,<br>
+            Convert.ToString(GrayNum, 2));<br>
+        }<br>
+    }<br>
+}<br>
+namespace Exercises<br>
+{<br>
+    class GrayCode<br>
+    {<br>
+        static int getGray(int n)<br>
+        {<br>
+            return n ^ (n >> 1);<br>
+        }<br>
+static void Main(string[] args)<br>
+        {<br>
+            int InputNum, GrayNum;<br>
+            Console.Write("\nEnter the decimal number: ");<br>
+            InputNum = Convert.ToInt32(Console.ReadLine());<br>
+            Console.WriteLine("\nBinary equivalent of {0}: {1}", InputNum,<br>
+            Convert.ToString(InputNum, 2));<br>
+            GrayNum = getGray(InputNum);<br>
+            Console.WriteLine("\nGray Code equivalent of {0}: {1}", InputNum,<br>
+            Convert.ToString(GrayNum, 2));<br>
+        }<br>
+    }<br>
+}<br>
