@@ -1,36 +1,48 @@
 ﻿using System;
+
 namespace Exercises
 {
-    class Delegates
+    class SumOfDiagonals
     {
-        delegate string UppercaseDelegate(string input);
-        static string UppercaseFirst(string input)
+        static void Main(string[] args)
         {
-            char[] buffer = input.ToCharArray();
-            buffer[0] = char.ToUpper(buffer[0]);
-            return new string(buffer);
-        }
-        static string UppercaseLast(string input)
-        {
-            char[] buffer = input.ToCharArray();
-            buffer[buffer.Length - 1] = char.ToUpper(buffer[buffer.Length - 1]);
-            return new string(buffer);
-        }
-        static string UppercaseAll(string input)
-        {
-            return input.ToUpper();
-        }
-        static void WriteOutput(string input, UppercaseDelegate del)
-        {
-            Console.WriteLine("Input String: {0}", input);
-            Console.WriteLine("Output String: {0}", del(input));
-        }
-        static void Main()
-        {
-            WriteOutput("tom ", new UppercaseDelegate(UppercaseFirst));
-            WriteOutput("tom", new UppercaseDelegate(UppercaseLast));
-            WriteOutput("tom", new UppercaseDelegate(UppercaseAll));
-            Console.ReadLine();
+            int MaxRow, MaxCol, Sum = 0;
+            int[,] Matrix;
+            Console.WriteLine("\n---------- SUM OF DIAGONAL OF A MATRIX ----------\n");
+            Console.Write("\nEnter the number of rows: ");
+            MaxRow = Convert.ToInt32(Console.ReadLine());
+            Console.Write("\nEnter the number of columns: ");
+            MaxCol = Convert.ToInt32(Console.ReadLine());
+            if (MaxRow != MaxCol)
+            {
+                Console.WriteLine("\nThe Dimensions entered are not of Square Matrix.");
+                Console.WriteLine("\nExiting the Program..");
+                return;
+            }
+            Matrix = new int[MaxRow, MaxCol];
+            for (int i = 0; i < MaxRow; i++)
+            {
+                for (int j = 0; j < MaxCol; j++)
+                {
+                    Console.Write("\nEnter the ({0},{1})th element of the matrix: ", (i + 1), (j + 1));
+                    Matrix[i, j] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            Console.WriteLine("\nThe entered Matrix is: ");
+            for (int i = 0; i < MaxRow; i++)
+            {
+                for (int j = 0; j < MaxCol; j++)
+                {
+                    Console.Write(" " + Matrix[i, j]);
+
+                    if (i == j)
+                    {
+                    Sum += Matrix[i, j];
+                    }
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("\nThe Sum of Diagonal is " + Sum);
         }
     }
 }
