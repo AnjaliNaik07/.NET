@@ -1,18 +1,22 @@
 ﻿using System;
-public class FibonacciExample
+public class PrimeNumberExample
 {
     public static void Main(string[] args)
     {
-        int n1 = 0, n2 = 1, n3, i, number;
-        Console.Write("Enter the number of elements: ");
-        number = int.Parse(Console.ReadLine());
-        Console.Write(n1 + " " + n2 + " "); //printing 0 and 1    
-        for (i = 2; i < number; ++i) //loop starts from 2 because 0 and 1 are already printed    
+        int n, i, m = 0, flag = 0;
+        Console.Write("Enter the Number to check Prime: ");
+        n = int.Parse(Console.ReadLine());
+        m = n / 2;
+        for (i = 2; i <= m; i++)
         {
-            n3 = n1 + n2;
-            Console.Write(n3 + " ");
-            n1 = n2;
-            n2 = n3;
+            if (n % i == 0)
+            {
+                Console.Write("Number is not Prime.");
+                flag = 1;
+                break;
+            }
         }
+        if (flag == 0)
+            Console.Write("Number is Prime.");
     }
 }
