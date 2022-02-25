@@ -1,48 +1,34 @@
 ﻿using System;
-
+using System.Threading;
 namespace Exercises
 {
-    class SumOfDiagonals
+    class ThreadPoolProg
     {
-        static void Main(string[] args)
+        public void ThreadFun1(object obj)
         {
-            int MaxRow, MaxCol, Sum = 0;
-            int[,] Matrix;
-            Console.WriteLine("\n---------- SUM OF DIAGONAL OF A MATRIX ----------\n");
-            Console.Write("\nEnter the number of rows: ");
-            MaxRow = Convert.ToInt32(Console.ReadLine());
-            Console.Write("\nEnter the number of columns: ");
-            MaxCol = Convert.ToInt32(Console.ReadLine());
-            if (MaxRow != MaxCol)
+            int loop = 0;
+            for (loop = 0; loop <= 4; loop++)
             {
-                Console.WriteLine("\nThe Dimensions entered are not of Square Matrix.");
-                Console.WriteLine("\nExiting the Program..");
-                return;
+                Console.WriteLine("Thread1 is executing");
             }
-            Matrix = new int[MaxRow, MaxCol];
-            for (int i = 0; i < MaxRow; i++)
+        }
+        public void ThreadFun2(object obj)
+        {
+            int loop = 0;
+            for (loop = 0; loop <= 4; loop++)
             {
-                for (int j = 0; j < MaxCol; j++)
-                {
-                    Console.Write("\nEnter the ({0},{1})th element of the matrix: ", (i + 1), (j + 1));
-                    Matrix[i, j] = Convert.ToInt32(Console.ReadLine());
-                }
+                Console.WriteLine("Thread2 is executing");
             }
-            Console.WriteLine("\nThe entered Matrix is: ");
-            for (int i = 0; i < MaxRow; i++)
+        }
+        public static void Main()
+        {
+            ThreadPoolProg TP = new ThreadPoolProg();
+            for (int i = 0; i < 2; i++)
             {
-                for (int j = 0; j < MaxCol; j++)
-                {
-                    Console.Write(" " + Matrix[i, j]);
-
-                    if (i == j)
-                    {
-                    Sum += Matrix[i, j];
-                    }
-                }
-                Console.WriteLine();
+                ThreadPool.QueueUserWorkItem(new WaitCallback(TP.ThreadFun1));
+                ThreadPool.QueueUserWorkItem(new WaitCallback(TP.ThreadFun2));
             }
-            Console.WriteLine("\nThe Sum of Diagonal is " + Sum);
+            Console.ReadKey();
         }
     }
 }
