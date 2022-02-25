@@ -1,40 +1,36 @@
 ﻿using System;
 namespace Exercises
 {
-    class Box
+    class Delegates
     {
-        float width;
-        float height;
-        float length;
-        public float Volume
+        delegate string UppercaseDelegate(string input);
+        static string UppercaseFirst(string input)
         {
-            get { return width * height * length; }
+            char[] buffer = input.ToCharArray();
+            buffer[0] = char.ToUpper(buffer[0]);
+            return new string(buffer);
         }
-        public Box(float width, float height, float length)
+        static string UppercaseLast(string input)
         {
-            this.width = width;
-            this.height = height;
-            this.length = height;
+            char[] buffer = input.ToCharArray();
+            buffer[buffer.Length - 1] = char.ToUpper(buffer[buffer.Length - 1]);
+            return new string(buffer);
         }
-        public static float operator +(Box box1, Box box2)
+        static string UppercaseAll(string input)
         {
-            return box1.Volume + box2.Volume;
+            return input.ToUpper();
         }
-        public override String ToString()
+        static void WriteOutput(string input, UppercaseDelegate del)
         {
-            return "box with width " + width + ", height " + height + " and length " + length;
+            Console.WriteLine("Input String: {0}", input);
+            Console.WriteLine("Output String: {0}", del(input));
         }
-    }
-    class OperatorOverloading
-    {
-        public static void Main()
+        static void Main()
         {
-            Box box1 = new Box(10, 20, 30);
-            Box box2 = new Box(25, 32, 15);
-            Console.WriteLine("Volume of {0} is: {1}", box1, box1.Volume);
-            Console.WriteLine("Volume of {0} is: {1}", box2, box2.Volume);
-
-        Console.WriteLine("Volume after adding boxes: {0}", box1 + box2);
+            WriteOutput("tom ", new UppercaseDelegate(UppercaseFirst));
+            WriteOutput("tom", new UppercaseDelegate(UppercaseLast));
+            WriteOutput("tom", new UppercaseDelegate(UppercaseAll));
+            Console.ReadLine();
         }
     }
 }
