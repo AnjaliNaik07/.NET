@@ -1,15 +1,21 @@
 ﻿using System;
-public class FactorialExample
+public class ArmstrongExample
 {
     public static void Main(string[] args)
     {
-        int i, fact = 1, number;
-        Console.Write("Enter any Number: ");
-        number = int.Parse(Console.ReadLine());
-        for (i = 1; i <= number; i++)
+        int n, r, sum = 0, temp;
+        Console.Write("Enter the Number= ");
+        n = int.Parse(Console.ReadLine());
+        temp = n;
+        while (n > 0)
         {
-            fact = fact * i;
+            r = n % 10;
+            sum = sum + (r * r * r);
+            n = n / 10;
         }
-        Console.Write("Factorial of " + number + " is: " + fact);
+        if (temp == sum)
+            Console.Write("Armstrong Number.");
+        else
+            Console.Write("Not Armstrong Number.");
     }
 }
